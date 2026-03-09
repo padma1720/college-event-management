@@ -1,0 +1,7 @@
+<h1>Register for {{ event.title }}</h1>
+<form method="post">
+  {% csrf_token %}
+  Name: <input type="text" name="name" required><br>
+  Email: <input type="email" name="email" required><br>
+  <button type="submit">Register</button>
+</form>

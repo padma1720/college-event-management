@@ -1,0 +1,11 @@
+<h1>College Events</h1>
+<ul>
+  {% for event in events %}
+    <li>
+      <h2>{{ event.title }}</h2>
+      <p>{{ event.description }}</p>
+      <p>{{ event.date }} at {{ event.time }}</p>
+      <a href="{% url 'register_event' event.id %}">Register</a>
+    </li>
+  {% endfor %}
+</ul>
