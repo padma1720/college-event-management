@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Tasks</title>
+</head>
+<body>
+
+<h2>Your To-Do Tasks</h2>
+<p>Welcome, {{ request.user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+
+<a href="{% url 'add_task' %}">+ Add New Task</a>
+
+<h3>Filter:</h3>
+<a href="{% url 'task_list' %}">All</a> |
+<a href="?status=completed">Completed</a> |
+<a href="?status=pending">Pending</a>
+
+<ul>
+{% for task in tasks %}
+    <li>
+        <strong>{{ task.title }}</strong> - {{ task.deadline }}
+        {% if task.completed %}
+            ✅ Completed
+        {% else %}
+            ⏳ Pending
+        {% endif %}
+
+        | <a href="{% url 'edit_task' task.id %}">Edit</a>
+        | <a href="{% url 'delete_task' task.id %}">Delete</a>
+    </li>
+{% empty %}
+    <p>No tasks found.</p>
+{% endfor %}
+</ul>
+
+</body>
+</html>
+
+
